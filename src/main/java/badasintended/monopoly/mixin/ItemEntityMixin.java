@@ -1,7 +1,7 @@
 package badasintended.monopoly.mixin;
 
-import badasintended.monopoly.Config;
 import badasintended.monopoly.Monopoly;
+import badasintended.monopoly.UnifyConfig;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Mixin(ItemEntity.class)
@@ -38,17 +39,17 @@ public abstract class ItemEntityMixin extends EntityMixin {
         if (!world.isClient && !monopoly$already) {
             monopoly$already = true;
             ItemStack stack = getStack();
-            for (Identifier id : Monopoly.getConfig().getUnify().keySet()) {
-                Tag<Item> tag = world.getTagManager().getItems().getTag(id);
+            for (Map.Entry<Identifier, UnifyConfig> entry : Monopoly.getInstance().getConfig().entrySet()) {
+                Tag<Item> tag = world.getTagManager().getItems().getTag(entry.getKey());
                 if (tag == null) continue;
                 if (tag.contains(stack.getItem())) {
-                    Config.Unify unify = Monopoly.getConfig().getUnify().getOrDefault(id, null);
-                    if (unify == null) continue;
+                    UnifyConfig unifyConfig = entry.getValue();
+                    if (unifyConfig == null) continue;
 
-                    if (!unify.isThrown() && getThrower() != null) continue;
-                    if (!unify.isNbt() && stack.getTag() != null) continue;
+                    if (!unifyConfig.isThrown() && getThrower() != null) continue;
+                    if (!unifyConfig.isNbt() && stack.getTag() != null) continue;
 
-                    Item item = Registry.ITEM.get(unify.getTarget());
+                    Item item = Registry.ITEM.get(unifyConfig.getTarget());
                     if (item == Items.AIR) continue;
 
                     ItemStack unified = new ItemStack(item, stack.getCount());
