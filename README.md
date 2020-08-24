@@ -11,8 +11,7 @@ For common tags used by various mods, see [tutorial:tags](https://fabricmc.net/w
 // this is not valid config since JSON doesn't support comments!
 {
   // the key is item tags.
-  // by default, monopoly won't change any items that has nbt data
-  // or items that thrown by player.
+  // this is a shorthand of nbt=false and thrown=false
   "c:copper_ingots": "techreborn:copper_ingot",
   
   // you need to set it too!
