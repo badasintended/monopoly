@@ -40,7 +40,7 @@ public abstract class ItemEntityMixin extends EntityMixin {
             monopoly$already = true;
             ItemStack stack = getStack();
             for (Map.Entry<Identifier, UnifyConfig> entry : Monopoly.getInstance().getConfig().entrySet()) {
-                Tag<Item> tag = world.getTagManager().getItems().getTag(entry.getKey());
+                Tag<Item> tag = world.getTagManager().items().get(entry.getKey());
                 if (tag == null) continue;
                 if (tag.contains(stack.getItem())) {
                     UnifyConfig unifyConfig = entry.getValue();
