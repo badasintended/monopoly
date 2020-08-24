@@ -12,11 +12,6 @@ dependencies {
     minecraft "com.mojang:minecraft:${minecraft}"
     mappings "net.fabricmc:yarn:${yarn}:v2"
     modImplementation "net.fabricmc:fabric-loader:${loader}"
-
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric}"
-
-    modRuntime "io.github.prospector:modmenu:${modmenu}"
-    modRuntime "me.shedaniel:RoughlyEnoughItems:${rei}"
 }
 
 if (enableDatabreaker.toBoolean()) {

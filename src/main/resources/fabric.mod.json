@@ -1,28 +1,21 @@
 {
   "schemaVersion": 1,
-  "id"           : "needle",
+  "id"           : "monopoly",
   "version"      : "${version}",
-  "name"         : "Example Mod",
-  "description"  : "This is an example description! Tell everyone what your mod is about!",
+  "name"         : "monopoly",
+  "description"  : "I don't need 69 different copper. I just need one.",
   "authors"      : ["deirn"],
   "contact"      : {
-    "homepage": "https://github.com/badasintended/needle",
-    "sources" : "https://github.com/badasintended/needle",
-    "issues"  : "https://github.com/badasintended/needle/issues"
+    "homepage": "https://github.com/badasintended/monopoly",
+    "sources" : "https://github.com/badasintended/monopoly",
+    "issues"  : "https://github.com/badasintended/monopoly/issues"
   },
   "license"      : "MIT",
-  "icon"         : "assets/needle/icon.png",
-  "environment"  : "*",
+  "icon"         : "icon.png",
   "entrypoints"  : {
-    "main"  : ["badasintended.needle.Mod"],
-    "client": ["badasintended.needle.ModClient"]
+    "main": ["badasintended.monopoly.Monopoly"]
   },
   "mixins"       : [
-    "needle.mixins.json"
-  ],
-  "depends"      : {
-    "fabricloader": ">=0.7.4",
-    "fabric"      : "*",
-    "minecraft"   : "1.16.x"
-  }
+    "monopoly.mixins.json"
+  ]
 }
