@@ -1,6 +1,6 @@
 # monopoly [![2][2]][4]  [![3][3]][5] <img src="src/main/resources/icon.png" align="right"/>
 
-monopoly is a Minecraft mod that tries to unifyConfig dropped items, keeping only one type of item optainable.    
+monopoly is a Minecraft mod that tries to unify dropped items, keeping only one type of item optainable.    
 **Configuration is required to monopoly.**
 
 ### Config Options
