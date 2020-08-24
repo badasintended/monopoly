@@ -14,7 +14,6 @@ For common tags used by various mods, see [tutorial:tags](https://fabricmc.net/w
   // this is a shorthand of nbt=false and thrown=false
   "c:copper_ingots": "techreborn:copper_ingot",
   
-  // you need to set it too!
   "c:steel_ingots": {
     "target": "techreborn:steel_ingot",
     "nbt"   : true, // [optional] allow converting items with nbt. nbt will be copied.
