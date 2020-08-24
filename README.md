@@ -1,17 +1,32 @@
-# monopoly [![1][1]][6]  [![2][2]][4]  [![3][3]][5] <img src="src/main/resources/icon.png" align="right"/>
+# monopoly [![2][2]][4]  [![3][3]][5] <img src="src/main/resources/icon.png" align="right"/>
 
-[![Fabric API](https://images2.imgbox.com/8e/38/bfInI5qv_o.png)][8] [![Fabric Language Kotlin](https://images2.imgbox.com/e6/72/9pHQB5ZC_o.png)][9]
+monopoly is a Minecraft mod that tries to unify dropped items, keeping only one type of item optainable.    
+**Configuration is required to monopoly.**
 
-tap to add text
+### Config Options
+Config is saved on `.minecraft/config/monopoly.json`.   
+To reload the config, simply relog from your world (if singleplayer) or restart the server.    
+For common tags used by various mods, see [tutorial:tags](https://fabricmc.net/wiki/tutorial:tags).
+```json5
+// this is not valid config since JSON doesn't support comments!
+{
+  "unify": {
+    // the key is item tags.
+    // by default, monopoly won't change any items that has nbt data
+    // or items that thrown by player.
+    "c:copper_ingots": "techreborn:copper_ingot",
+    
+    // you need to set it too!
+    "c:steel_ingots": {
+      "target": "techreborn:steel_ingot",
+      "nbt"   : true, // [optional] allow converting items with nbt. nbt will be copied.
+      "thrown": true  // [optional] convert items thrown by player.
+    }
+  }
+}
+```
 
-[1]: https://img.shields.io/badge/minecraft-1.16+-brightgreen
 [2]: https://img.shields.io/badge/loader-Fabric-blue
 [3]: https://img.shields.io/badge/code_quality-F-red
 [4]: https://fabricmc.net
 [5]: https://git.io/code-quality
-[6]: https://minecraft.net
-[7]: src/main/resources/assets/storagenetworks/icon.png
-[8]: https://www.curseforge.com/minecraft/mc-mods/fabric-api
-[9]: https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin
-[10]: http://cf.way2muchnoise.eu/full_slotlink_downloads.svg
-[11]: https://www.curseforge.com/minecraft/mc-mods/slotlink
