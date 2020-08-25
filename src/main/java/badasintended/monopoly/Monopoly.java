@@ -72,7 +72,7 @@ public class Monopoly implements ModInitializer {
     public ItemStack unify(World world, ItemStack from) {
         if (world.isClient || from.isEmpty()) return from;
         for (Map.Entry<Identifier, UnifyConfig> entry : getConfig().entrySet()) {
-            Tag<Item> tag = world.getTagManager().getItems().getTag(entry.getKey());
+            Tag<Item> tag = world.getTagManager().items().get(entry.getKey());
             if (tag == null) continue;
             if (tag.contains(from.getItem())) {
                 UnifyConfig unifyConfig = entry.getValue();
