@@ -11,13 +11,12 @@ For common tags used by various mods, see [tutorial:tags](https://fabricmc.net/w
 // this is not valid config since JSON doesn't support comments!
 {
   // the key is item tags.
-  // this is a shorthand of nbt=false and thrown=false
+  // this is a shorthand of nbt=false
   "c:copper_ingots": "techreborn:copper_ingot",
   
   "c:steel_ingots": {
     "target": "techreborn:steel_ingot",
     "nbt"   : true, // [optional] allow converting items with nbt. nbt will be copied.
-    "thrown": true  // [optional] convert items thrown by player.
   }
 }
 ```

@@ -5,7 +5,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -61,6 +67,30 @@ public class Monopoly implements ModInitializer {
 
     public Map<Identifier, UnifyConfig> getConfig() {
         return config;
+    }
+
+    public ItemStack unify(World world, ItemStack from) {
+        if (world.isClient || from.isEmpty()) return from;
+        for (Map.Entry<Identifier, UnifyConfig> entry : getConfig().entrySet()) {
+            Tag<Item> tag = world.getTagManager().getItems().getTag(entry.getKey());
+            if (tag == null) continue;
+            if (tag.contains(from.getItem())) {
+                UnifyConfig unifyConfig = entry.getValue();
+                if (unifyConfig == null) continue;
+
+                if (!unifyConfig.isNbt() && from.getTag() != null) continue;
+
+                Item item = Registry.ITEM.get(unifyConfig.getTarget());
+                if (item == Items.AIR) continue;
+
+                ItemStack unified = new ItemStack(item, from.getCount());
+
+                unified.setTag(from.getTag());
+
+                return unified;
+            }
+        }
+        return from;
     }
 
     private void reset() {

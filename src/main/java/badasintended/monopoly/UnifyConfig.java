@@ -11,8 +11,6 @@ public class UnifyConfig {
 
     private boolean nbt = false;
 
-    private boolean thrown = false;
-
     public Identifier getTarget() {
         return target;
     }
@@ -21,20 +19,12 @@ public class UnifyConfig {
         return nbt;
     }
 
-    public boolean isThrown() {
-        return thrown;
-    }
-
     public void setTarget(Identifier target) {
         this.target = target;
     }
 
     public void setNbt(boolean nbt) {
         this.nbt = nbt;
-    }
-
-    public void setThrown(boolean thrown) {
-        this.thrown = thrown;
     }
 
     public static class Serializer implements JsonSerializer<UnifyConfig>, JsonDeserializer<UnifyConfig> {
@@ -52,7 +42,6 @@ public class UnifyConfig {
                 JsonObject object = json.getAsJsonObject();
                 unifyConfig.setTarget(new Identifier(object.get("target").getAsString()));
                 if (object.has("nbt")) unifyConfig.setNbt(object.get("nbt").getAsBoolean());
-                if (object.has("thrown")) unifyConfig.setThrown(object.get("thrown").getAsBoolean());
             }
 
             return unifyConfig;
@@ -60,12 +49,11 @@ public class UnifyConfig {
 
         @Override
         public JsonElement serialize(UnifyConfig src, Type typeOfSrc, JsonSerializationContext context) {
-            if (!src.nbt && !src.thrown) return new JsonPrimitive(src.target.toString());
+            if (!src.nbt) return new JsonPrimitive(src.target.toString());
 
             JsonObject object = new JsonObject();
             object.addProperty("target", src.target.toString());
             if (src.nbt) object.addProperty("nbt", true);
-            if (src.thrown) object.addProperty("thrown", true);
 
             return object;
         }
