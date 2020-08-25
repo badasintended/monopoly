@@ -16,12 +16,15 @@ public class MinecraftServerMixin {
 
     @Inject(method = "runServer", at = @At("HEAD"))
     private void loadConfig(CallbackInfo info) {
-        Monopoly.getInstance().loadConfig();
+        Monopoly.getInstance().loadConfig((MinecraftServer) (Object) this);
     }
 
-    @Inject(method = "reloadResources", at = @At("HEAD"))
+    @Inject(method = "reloadResources", at = @At("TAIL"))
     private void reloadConfig(Collection<String> collection, CallbackInfoReturnable<CompletableFuture<Void>> cir) {
-        Monopoly.getInstance().loadConfig();
+        cir.getReturnValue().handleAsync((value, throwable) -> {
+            Monopoly.getInstance().loadConfig((MinecraftServer) (Object) this);
+            return value;
+        }, (MinecraftServer) (Object) this);
     }
 
 }
