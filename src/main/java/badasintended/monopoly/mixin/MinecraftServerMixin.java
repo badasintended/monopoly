@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
 
-    @Inject(method = "runServer", at = @At("TAIL"))
+    @Inject(method = "runServer", at = @At("HEAD"))
     private void loadConfig(CallbackInfo info) {
         Monopoly.getInstance().loadConfig((MinecraftServer) (Object) this);
     }

@@ -1,6 +1,5 @@
 package badasintended.monopoly;
 
-import com.google.common.collect.Iterables;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -103,7 +102,7 @@ public class Monopoly implements ModInitializer {
     private void reset(MinecraftServer server) {
         config.clear();
         int generated = 0;
-        for (Map.Entry<Identifier, Tag<Item>> entry : server.getTagManager().getItems().getTags().entrySet()) {
+        for (Map.Entry<Identifier, Tag<Item>> entry : server.getTagManager().items().getEntries().entrySet()) {
             Identifier id = entry.getKey();
             if (id.getNamespace().equals("c") && DEFAULTS.matcher(id.getPath()).matches()) {
                 List<Item> values = entry.getValue().values();

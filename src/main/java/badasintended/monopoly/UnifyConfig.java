@@ -52,9 +52,9 @@ public class UnifyConfig {
                 JsonObject object = json.getAsJsonObject();
                 unifyConfig.setTarget(Registry.ITEM.get(new Identifier(object.get("target").getAsString())));
                 if (object.has("nbt")) unifyConfig.setNbt(object.get("nbt").getAsBoolean());
-                if (object.has("excluded")) {
+                if (object.has("exclude")) {
                     unifyConfig.excluded.clear();
-                    JsonElement excluded = object.get("excluded");
+                    JsonElement excluded = object.get("exclude");
                     if (excluded.isJsonPrimitive()) {
                         unifyConfig.excluded.add(Registry.ITEM.get(new Identifier(excluded.getAsString())));
                     } else if (excluded.isJsonArray()) {
@@ -75,7 +75,7 @@ public class UnifyConfig {
             if (src.nbt) object.addProperty("nbt", true);
             if (!src.excluded.isEmpty()) {
                 if (src.excluded.size() == 1) {
-                    object.addProperty("excluded", Registry.ITEM.getId(src.excluded.get(0)).toString());
+                    object.addProperty("exclude", Registry.ITEM.getId(src.excluded.get(0)).toString());
                 } else {
                     JsonArray array = new JsonArray();
                     src.excluded.forEach(item -> array.add(Registry.ITEM.getId(item).toString()));
