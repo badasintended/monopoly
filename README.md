@@ -16,7 +16,7 @@ For common tags used by various mods, see [tutorial:tags](https://fabricmc.net/w
   
   "c:steel_ingots": {
     "target": "techreborn:steel_ingot",
-    "nbt"   : true, // [optional] allow converting items with nbt. nbt will be copied.
+    "nbt"   : true // [optional] allow converting items with nbt. nbt will be copied.
   }
 }
 ```
