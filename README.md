@@ -1,7 +1,6 @@
 # monopoly [![2][2]][4]  [![3][3]][5] <img src="src/main/resources/icon.png" align="right"/>
 
-monopoly is a Minecraft mod that'll try to unify dropped items, keeping only one type of item optainable.    
-By default, it will try to monopolize ores, ingots, plates, etc. to whatever the first item it can get.    
+monopoly is a Minecraft mod that'll try to unify dropped items, keeping only one type of item obtainable. By default, it will try to monopolize ores, ingots, plates, etc. to whatever the first item it can get.    
 **Manual configuration is recommended to monopoly the correct market.**
 
 ### Config Options
