@@ -11,6 +11,7 @@ import net.minecraft.item.Items;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,9 +20,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 @SuppressWarnings("unused")
@@ -105,10 +104,11 @@ public class Monopoly implements ModInitializer {
         for (Map.Entry<Identifier, Tag<Item>> entry : server.getTagManager().getItems().getTags().entrySet()) {
             Identifier id = entry.getKey();
             if (id.getNamespace().equals("c") && DEFAULTS.matcher(id.getPath()).matches()) {
-                List<Item> values = entry.getValue().values();
-                if (values.size() <= 1) continue;
+                List<Item> items = new ArrayList<>(entry.getValue().values());
+                if (items.size() <= 1) continue;
+                items.sort(Comparator.comparingInt(Registry.ITEM::getRawId));
                 UnifyConfig unifyConfig = new UnifyConfig();
-                unifyConfig.setTarget(values.get(0));
+                unifyConfig.setTarget(items.get(0));
                 config.put(id, unifyConfig);
                 generated++;
             }
